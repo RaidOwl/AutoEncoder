@@ -1,0 +1,56 @@
+{
+  "search_path": null,
+  "output_dir": "/mnt/md0/encoded_videos",
+  "rip_dir": "/mnt/md0/ripped_discs",
+  "final_dir": "/mnt/Network_HDD/Videos/encoded_videos",
+  "max_threads": 4,
+  "rescan_interval": 30,
+  "min_size_mb": 100,
+  "video_extensions": [".mp4", ".mkv", ".avi", ".mov", ".flv", ".wmv"],
+  "profile": "ffmpeg_qsv",
+  "ffmpeg": {
+    "encoder": "dnxhd",
+    "video": "scale=1920:1080,format=yuv422p",
+    "profile": "dnxhr_sq",
+    "extension": ".mov"
+  },
+  "ffmpeg_qsv": {
+    "hwdev": "qsv=hw",
+    "filterdev": "hw",
+    "encoder": "hevc_qsv",
+    "video": "hwupload=extra_hw_frames=64,scale_qsv=w=1280:h=720,format=qsv",
+    "quality": 20,
+    "audio": "copy",
+    "extension": ".mp4"
+  },
+  "ffmpeg_fallback": {
+    "encoder": "libx264",
+    "video": "scale=1920:1080,format=yuv420p",
+    "profile": "high",
+    "extension": ".mp4"
+  },
+  "handbrake": {
+    "encoder": "qsv_h265",
+    "quality": "10",
+    "width": 1280,
+    "height": 720,
+    "extension": ".mp4",
+    "extra_args": []
+  },
+  "handbrake_dvd": {
+    "encoder": "qsv_h265",
+    "quality": "20",
+    "width": 1920,
+    "height": 1080,
+    "extension": ".mp4",
+    "extra_args": []
+  },
+  "handbrake_br": {
+    "encoder": "qsv_h265",
+    "quality": "25",
+    "width": 3840,
+    "height": 2160,
+    "extension": ".mp4",
+    "extra_args": []
+  }
+}
