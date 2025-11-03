@@ -1,4 +1,0 @@
-FFmpeg-python
-watchdog
-pytest
-```
