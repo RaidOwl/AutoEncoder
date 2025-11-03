@@ -24,6 +24,7 @@ dist/
 .vscode/
 .idea/
 .github/
+.*
 *.sublime-project
 *.sublime-workspace
 

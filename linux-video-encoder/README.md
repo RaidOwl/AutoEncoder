@@ -1,59 +1,43 @@
 # Linux Video Encoder
 
-This project provides a Python-based solution for finding and encoding video files on a Linux machine using FFmpeg. It consists of several modules that work together to scan for video files, encode them, and provide a user-friendly interface for operation.
+This project provides a Python-based solution for finding and encoding video files on a Linux machine using FFmpeg and HandBrakeCLI. It consists of several modules that work together to scan for video files, encode them, and provide a user-friendly interface for operation.
 
-## Project Structure
-
-```
-linux-video-encoder
-├── src
-│   ├── encoder.py          # Main encoding logic using FFmpeg
-│   ├── scanner.py          # Scans for video files on the system
-│   ├── ffmpeg_wrapper.py    # Wrapper for FFmpeg command execution
-│   ├── autoencoder.py      # Entry point for the application
-│   └── __init__.py        # Package initialization
-├── tests
-│   ├── test_scanner.py     # Unit tests for the Scanner class
-│   ├── test_encoder.py      # Unit tests for the Encoder class
-│   └── __init__.py        # Package initialization for tests
-├── scripts
-│   └── run_encoder.sh      # Shell script to run the encoder
-├── docs
-│   └── usage.md           # Documentation on usage and installation
-├── pyproject.toml         # Project metadata and dependencies
-├── requirements.txt       # Python dependencies
-├── .gitignore             # Files to ignore in Git
-├── LICENSE                # Licensing information
-└── README.md              # Project overview and documentation
-```
 
 ## Installation
 
 To install the necessary dependencies, run:
 
 ```
+sudo apt-get install -y python3 ffmpeg libdvdread4 libbluray-bdj libdvdcss2 udisks2
 pip install -r requirements.txt
 ```
 
-Make sure you have FFmpeg installed on your system. You can install it using your package manager, for example:
+If you are working with blurays you'll need 'makemkv'. Depending on your OS you will have different [installation methods](https://makemkv.com/downloads)
 
-```
-sudo apt-get install ffmpeg
-```
 
 ## Usage
 
-To find and encode video files, you can run the encoder script using the provided shell script:
+To find and encode video files, you can run the script using python
 
 ```
-bash scripts/run_encoder.sh
+sudo python3 path/to/your/directory/autoencoder.py
 ```
 
-This will initiate the scanning of connected video files and encode them using the specified settings in the `encoder.py` module.
+This will initiate the scanning of connected video files and encode them using the specified settings in the `config.json` file.
 
-## Contributing
+## Config
 
-Contributions are welcome! Please feel free to submit a pull request or open an issue for any enhancements or bug fixes.
+* __search_path__ - You can specify a specific directory to search if the scan doesn't find your files.
+* __output_dir__ - Where your videos will be encoded to
+* __rip_dir__ - Where your ripped blurays will be saved
+* __final_dir__ - Where you encoded video are sent after a sucessful run. Set to null if the output_dir if where you want them to stay.
+* __max_threads__ - How many simulaneous encodes you want running
+* __rescan_interval__ - Wait time between scans in seconds
+* __min_size_mb__ - The minimum size in Megabytes for a video to be encoded
+* __video_extensions__ - A list of video extensions that will be encoded
+* __profile__ - The profile you want to use for encoding
+* __profiles__ - These are examples created that use the ffmpeg and HandBrakeCLI commands. See their docs for other parameters.
+
 
 ## License
 
